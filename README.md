@@ -1,4 +1,4 @@
-# no.renovasjon
+# renovasjon
 
 ## Project setup
 ```
