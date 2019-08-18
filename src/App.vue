@@ -17,25 +17,17 @@
         />
       </svg>
     </div>
-    <Søk />
+    <Tømmedager />
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import Tømmedager from "./components/Tommedager.vue";
-import Søk from "./components/Sok.vue";
 
 export default {
   name: "app",
   components: {
-    Tømmedager,
-    Søk
-  },
-  methods: {
-    eventChild: function(id) {
-      console.log("Event from child component emitted", id);
-    }
+    Tømmedager
   }
 };
 </script>
@@ -45,8 +37,84 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin: 15px auto;
+}
+
+h1 {
+  color: var(--theme-header);
+}
+* {
+  transition: height 0.2s linear;
+  transition: border-color linear 0.1s;
+}
+
+#autosuggest__input {
+  background-color: var(--theme-bg);
+  caret-color: #ddd;
+  color: var(--theme-color);
+  position: relative;
+  display: block;
+  font-size: 20px;
+  border: 1px solid #616161;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+#autosuggest__input.autosuggest__input--open,
+#autosuggest__input:hover {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid lightgray;
+}
+.autosuggest__results-container {
+  position: relative;
+  width: 100%;
+  background-color: var(--theme-bg);
+}
+.autosuggest__results {
+  background-color: var(--theme-bg);
+  font-weight: 300;
+  margin: 0;
+  position: absolute;
+  z-index: 10000001;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 0px;
+  overflow: scroll;
+  max-height: 400px;
+}
+.autosuggest__results ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  background-color: var(--theme-bg);
+}
+.autosuggest__results .autosuggest__results-item {
+  cursor: pointer;
+  background-color: var(--theme-bg);
+  padding: 10px;
+}
+#autosuggest ul:nth-child(1) > .autosuggest__results-before {
+  border-top: none;
+}
+.autosuggest__results .autosuggest__results-before {
+  color: var(--theme-color);
+  opacity: 0.5;
+  font-size: 11px;
+  margin-left: 0;
+  padding: 15px 13px 5px;
+  border-top: 1px solid lightgray;
+}
+.autosuggest__results .autosuggest__results-item:active,
+.autosuggest__results .autosuggest__results-item:hover,
+.autosuggest__results .autosuggest__results-item:focus,
+.autosuggest__results
+  .autosuggest__results-item.autosuggest__results-item--highlighted {
+  background-color: var(--theme-item_bg_highlighted);
+  color: var(--theme-item_color_highlighted);
 }
 </style>
