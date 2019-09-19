@@ -64,6 +64,7 @@ export default {
 
   methods: {
     onSelected: async function(item) {
+      console.log('item', item);
       this.loading = true;
       this.tømmedager = await this.getTømmedager(item.item);
       this.loading = false;
@@ -79,8 +80,9 @@ export default {
 
     getAdresses: async function(value) {
       try {
+
         const response = await fetch(
-          `https://services.webatlas.no/GISLINE.Web.Services.Search.SOLR3.0/Service.svc/json/addressWeighted?searchString=${value}&municipality=0213&weightedMunicipality=0213&firstIndex=0&maxNoOfResults=20&language=NO&coordsys=84&clientID=Android-Renovasjon-0213`,
+          `https://services.webatlas.no/GISLINE.Web.Services.Search.SOLR3.0/Service.svc/json/addressWeighted?searchString=${value}&municipality=${this.municipality}&weightedMunicipality=${this.municipality}&firstIndex=0&maxNoOfResults=20&language=NO&coordsys=84&clientID=Android-Renovasjon-0213`,
           {
             method: "GET",
             headers: {
@@ -92,7 +94,6 @@ export default {
         );
 
         const result = await response.json();
-
         const addresser = result.AddressSearchResult.Roads.map(road =>
           road.Addresses.map(adress => {
             return {
@@ -111,7 +112,7 @@ export default {
           })
         );
 
-        this.suggestions = [{ data: addresser[0] }];
+        this.suggestions = [{ data: (addresser || [])[0] }];
 
         return "Got it!";
       } catch (error) {
@@ -154,6 +155,7 @@ export default {
       selected: null,
       debounceMilliseconds: 50,
       suggestions: [],
+      municipality: '0213',
       inputProps: {
         id: "autosuggest__input",
         placeholder: "Din adresse"
@@ -163,7 +165,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .flex {
   display: flex;
