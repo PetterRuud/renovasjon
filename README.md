@@ -1,4 +1,4 @@
-# renovasjon
+# Tømmekalender
 
 ## Project setup
 ```
