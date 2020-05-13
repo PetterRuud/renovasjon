@@ -64,7 +64,6 @@ export default {
 
   methods: {
     onSelected: async function(item) {
-      console.log('item', item);
       this.loading = true;
       this.tømmedager = await this.getTømmedager(item.item);
       this.loading = false;
@@ -155,7 +154,7 @@ export default {
       selected: null,
       debounceMilliseconds: 50,
       suggestions: [],
-      municipality: '0213',
+      municipality: '3020',
       inputProps: {
         id: "autosuggest__input",
         placeholder: "Din adresse"
